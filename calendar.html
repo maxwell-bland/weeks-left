@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html>
-<body>
-<canvas id="myCanvas" width="747" height="443" style="border:1px solid #d3d3d3;">
-Your browser does not support the HTML5 canvas tag.</canvas>
+  <body>
+    <canvas id="myCanvas" width="747" height="443" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
 
-<script>
-
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
-var age = 52 * 19;
-var today  = new Date();
-var birth = new Date("1997-09-13");
-var weeks = Math.round((today-birth)/ 604800000);
-ctx.strokeStyle="blue";
-ctx.fillStyle="blue";
-for (i = 0; i < 91; i++ ) {
-  for (j = 0; j < 53; j++ ) { 
-    if ( weeks == 0 ) {
-      ctx.fill();
-        //ctx.strokeStyle="blue";
-        
+    <script>
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+      
+    // Calculate my time currently lived
+    var today  = new Date();
+    var birth = new Date("1997-09-13");
+    var weeks = Math.round((today-birth)/ 604800000); // milliseconds to weeks
+      
+    // For added beauty
+    ctx.strokeStyle="blue";
+    ctx.fillStyle="blue";
+    // Loop through weeks
+    for (i = 0; i < 91; i++ ) {
+      for (j = 0; j < 53; j++ ) { 
+        if ( weeks == 0 ) {
+          // fill the rectangles we've lived
+          ctx.fill();
+        }
+        weeks--; // inefficient, but it's such a small computation
+                 // I'm not going to worry about it.
+        ctx.rect(i * 8 + 10, j* 8 + 10, 5, 5);
+        }
     }
-    weeks--;
-  ctx.rect(i * 8 + 10, j* 8 + 10, 5, 5);
-  
-    }
-}
-ctx.stroke();
-</script> 
-</body>
+    ctx.stroke(); // draw
+    </script> 
+  </body>
 </html>
 
